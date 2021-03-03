@@ -36,7 +36,7 @@ app.use((req, res, next) => {
     next();
   });
 
-  app.use(bodyParser.json());
+app.use(bodyParser.json());
 
 app.use('/api/stuff', (req, res, next) => {
     const stuff = [
@@ -58,6 +58,13 @@ app.use('/api/stuff', (req, res, next) => {
         },
     ];
     res.status(200).json(stuff);
+});
+
+app.post('api/stuff', (req, res, next) => {
+    console.log(req.body);
+    res.status(201).json({
+        message: 'Thing created successfully ! '
+    });
 });
 
 // export app as a module
