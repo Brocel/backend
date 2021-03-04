@@ -1,7 +1,20 @@
 const express = require('express'); // import express package
 const bodyParser = require('body-parser');
+const mongoose = require('mongoose');
 
 const app = express();
+
+// MongoDB params
+const uri = "mongodb+srv://Admin:<password>@brocelscluster01.isyv0.mongodb.net/myFirstDatabase?retryWrites=true&w=majority";
+
+mongoose.connect(uri)
+    .then(() => {
+    console.log('Successfully connected to MongoDB Atlas !');
+    })
+    .catch((error) => {
+        console.log('Unable to connect to MongoDB Atlas !');
+        console.error(error);
+    });
 
 // app use cycle
 // Exemple 1 : 
