@@ -27,28 +27,23 @@ app.use((req, res, next) => {
 
 app.use(bodyParser.json());
 
+// Get Route
 app.use('/api/stuff', (req, res, next) => {
-    const stuff = [
-        {
-            _id: 'oeihfzoei',
-            title: 'My first thing', 
-            description: 'All of the info about my first thing',
-            imageUrl: '',
-            price: 4900,
-            userId: 'qsomihvqios',
-        }, 
-        {
-            _id: 'oeihfzeomoihi',
-            title: 'My second thing',
-            description: 'All of the info about my second thing',
-            imageUrl: '',
-            price: 2900,
-            userId: 'qsomihvqios',
-        },
-    ];
-    res.status(200).json(stuff);
+    Thing.find()
+    .then(
+        (things) => {
+            res.status(200).json(things);
+        }
+    ).catch(
+        (error) => {
+            res.status(400).json({
+                error: error
+            });
+        }
+    );
 });
 
+// Post route
 app.post('/api/stuff', (req, res, next) => {
     const thing = new Thing({
         title: req.body.title, 
