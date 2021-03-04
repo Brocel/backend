@@ -7,7 +7,7 @@ const Thing = require('./models/thing');
 const app = express();
 
 // MongoDB params
-const uri = "mongodb+srv://Admin:AdminTest666@brocelscluster01.isyv0.mongodb.net/myFirstDatabase?retryWrites=true&w=majority";
+const uri = "mongodb+srv://Admin:AdminTest666@brocelscluster01.isyv0.mongodb.net/go_fullstack_tuto?retryWrites=true&w=majority";
 
 mongoose.connect(uri)
     .then(() => {
@@ -30,17 +30,17 @@ app.use(bodyParser.json());
 // Get all Route
 app.use('/api/stuff', (req, res, next) => {
     Thing.find()
-    .then(
-        (things) => {
-            res.status(200).json(things);
-        }
-    ).catch(
-        (error) => {
-            res.status(400).json({
-                error: error
-            });
-        }
-    );
+        .then(
+            (things) => {
+                res.status(200).json(things);
+            }
+        ).catch(
+            (error) => {
+                res.status(400).json({
+                    error: error
+                });
+            }
+        );
 });
 
 // Post route
