@@ -1,7 +1,9 @@
 const express = require('express'); // import express package
-const bodyParser = require('body-parser');
-const mongoose = require('mongoose');
-
+const bodyParser = require('body-parser'); // import body parser
+const mongoose = require('mongoose'); // import mongoose
+// Models
+const Thing = require('./models/thing');
+// Express App
 const app = express();
 
 // MongoDB params
@@ -15,32 +17,6 @@ mongoose.connect(uri)
         console.log('Unable to connect to MongoDB Atlas !');
         console.error(error);
     });
-
-// app use cycle
-// Exemple 1 : 
-// app.use((req, res) => {
-
-//     res.json({ message: 'Your request was sucessful !' });
-// });
-// Exemple 2 : (middleware with next)
-// app.use((req, res, next) => {
-//     console.log('Request received !');
-//     next();
-// });
-
-// app.use((req, res, next) => {
-//     res.status(201);
-//     next;
-// });
-
-// app.use((req, res, next) => {
-//     res.json({ message: 'Your request was sucessful !' });
-//     next();
-// });
-
-// app.use((req, res, next) => {
-//     console.log('Response sent successfully !');
-// });
 
 app.use((req, res, next) => {
     res.setHeader('Access-Control-Allow-Origin', '*');
@@ -73,11 +49,28 @@ app.use('/api/stuff', (req, res, next) => {
     res.status(200).json(stuff);
 });
 
-app.post('api/stuff', (req, res, next) => {
-    console.log(req.body);
-    res.status(201).json({
-        message: 'Thing created successfully ! '
+app.post('/api/stuff', (req, res, next) => {
+    const thing = new Thing({
+        title: req.body.title, 
+        description: req.body.description,
+        imageUrl: req.body.imageUrl,
+        price: req.body.price,
+        userId: req.body.userId
     });
+    thing.save()
+        .then(
+            () => {
+                res.status(201).json({
+                    message: 'Post saved successfully !'
+                });
+            }
+        ).catch(
+            (error) => {
+                res.status(400).json({
+                    error: error
+                });
+            }
+        );
 });
 
 // export app as a module
