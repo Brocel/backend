@@ -5,7 +5,7 @@ const mongoose = require('mongoose');
 const app = express();
 
 // MongoDB params
-const uri = "mongodb+srv://Admin:<password>@brocelscluster01.isyv0.mongodb.net/myFirstDatabase?retryWrites=true&w=majority";
+const uri = "mongodb+srv://Admin:AdminTest666@brocelscluster01.isyv0.mongodb.net/myFirstDatabase?retryWrites=true&w=majority";
 
 mongoose.connect(uri)
     .then(() => {
