@@ -7,19 +7,6 @@ const Thing = require('./models/thing');
 const app = express();
 
 // MongoDB params
-//  à tester ->
-const MongoClient = require('mongodb').MongoClient;
-const uri = "mongodb+srv://Admin:<password>@brocelscluster01.isyv0.mongodb.net/myFirstDatabase?retryWrites=true&w=majority";
-const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true });
-client.connect(err => {
-  const collection = client.db("test").collection("devices");
-  // perform actions on the collection object
-  client.close();
-});
-
-
-
-
 const uri = "";
 
 mongoose.connect("mongodb+srv://Admin:AdminTest666@brocelscluster01.isyv0.mongodb.net/go_fullstack_tuto?retryWrites=true&w=majority")
