@@ -9,7 +9,7 @@ const app = express();
 // MongoDB params
 const uri = "";
 
-mongoose.connect("mongodb+srv://Admin:AdminTest666@brocelscluster01.isyv0.mongodb.net/go_fullstack_tuto?retryWrites=true&w=majority")
+mongoose.connect("")
     .then(() => {
     console.log('Successfully connected to MongoDB Atlas !');
     })
